@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, make_response, abort
 
+'''
 class Book:
     def __init__(self, id, title, description):
         self.id = id
@@ -18,10 +19,11 @@ books = [
     Book(1, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
     Book(2, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
     Book(3, "Fictional Book Title", "A fantasy novel set in an imaginary world.")
-] 
+] '''
 
 books_bp = Blueprint("books", __name__, url_prefix="/books")
 
+'''
 @books_bp.route("", methods=["GET"])
 def handle_books():
     books_response = []
@@ -46,3 +48,4 @@ def handle_book(book_id):
     book = validate_book(book_id)
 
     return jsonify(book.to_dict())
+    '''

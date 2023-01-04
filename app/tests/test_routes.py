@@ -10,11 +10,11 @@ def test_get_all_books_with_no_records(client):
 def test_get_all_books_with_records(client,two_saved_books):
     response = client.get("/books")
     response_body = response.get_json()
-    result = [ {"book_id": 1,
+    result = [ {"id": 1,
             "title": "Ocean Book",
             "description": "watr 4evr"},
         {
-            "book_id": 2,
+            "id": 2,
             "title": "Mountain Book",
             "description": "i luv 2 climb rocks"
         } ]
@@ -44,7 +44,7 @@ def test_get_all_books_with_title_query_matching_one(client, two_saved_books):
     assert response.status_code == 200
     assert len(response_body) == 1
     assert response_body[0] == {
-        "book_id": 1,
+        "id": 1,
         "title": "Ocean Book",
         "description": "watr 4evr"
     }
@@ -57,7 +57,7 @@ def test_get_one_book(client,two_saved_books):
     # Assert
     assert response.status_code == 200
     assert response_body == {
-        "book_id": 1,
+        "id": 1,
         "title": "Ocean Book",
         "description": "watr 4evr"
     }

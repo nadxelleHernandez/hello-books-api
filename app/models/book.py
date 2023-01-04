@@ -7,7 +7,7 @@ class Book(db.Model):
 
     def to_dict(self):
         return {
-            "book_id": self.id,
+            "id": self.id,
             "title" : self.title,
             "description" : self.description
         }

@@ -38,3 +38,14 @@ def two_saved_books(app):
     # db.session.add(ocean_book)
     # db.session.add(mountain_book)
     db.session.commit()
+
+@pytest.fixture
+def one_book(app):
+    city_book = Book(title="City Book",
+                     description="A book about the city")
+
+    db.session.add(city_book)
+    db.session.commit()
+    db.session.refresh(city_book,["id"])
+
+    return city_book

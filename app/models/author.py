@@ -6,10 +6,12 @@ class Author(db.Model):
     books = db.relationship("Book", back_populates="author")
 
     def to_dict(self):
-        return {
+        book_dict = {
             "id": self.id,
             "name": self.name
         }
+        book_dict["books"] = [book.title for book in self.books]
+        return book_dict
 
     @classmethod
     def from_dict(cls, author_data):

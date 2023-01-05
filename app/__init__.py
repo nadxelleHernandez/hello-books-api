@@ -24,6 +24,7 @@ def create_app(test_config=None):
 
     from app.models.book import Book
     from app.models.author import Author
+    from app.models.genre import Genre
 
     db.init_app(app)
     migrate.init_app(app, db)

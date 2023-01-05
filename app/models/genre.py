@@ -6,10 +6,15 @@ class Genre(db.Model):
     books = db.relationship("Book",secondary="book_genre",back_populates="genres")
 
     def to_dict(self):
-        return {
+        genre_dict = {
             "id": self.id,
             "name": self.name
         }
+        if self.books:
+            book_titles = [book.title for book in self.books]
+            genre_dict["books"] = book_titles
+
+        return genre_dict
 
     @classmethod
     def from_dict(cls, genre_data):

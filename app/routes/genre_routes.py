@@ -24,3 +24,26 @@ def get_all_genres():
     genres_response = [genre.to_dict() for genre in genres]
 
     return jsonify(genres_response)
+
+@genre_bp.route("<genre_id>/books",methods=["POST"])
+def create_book_with_genre(genre_id):
+    request_body = request.get_json()
+    genre = validate_model(Genre,genre_id)
+    new_book = Book.from_dict(request_body)
+    new_book.author_id = request_body["author_id"]
+    new_book.genres = [genre]
+
+    db.session.add(new_book)
+    db.session.commit()
+
+    msg = f"Book {new_book.title} by {new_book.author.name} successfully created"
+    return make_response(jsonify(msg),201)
+
+@genre_bp.route("<genre_id>/books",methods=["GET"])
+def get_books_by_genre(genre_id):
+    genre = validate_model(Genre,genre_id)
+
+    books_response = [book.to_dict() for book in genre.books]
+
+    return jsonify(books_response)
+

@@ -10,7 +10,9 @@ class Author(db.Model):
             "id": self.id,
             "name": self.name
         }
-        book_dict["books"] = [book.title for book in self.books]
+        if self.books:
+            book_dict["books"] = [book.title for book in self.books]
+            
         return book_dict
 
     @classmethod

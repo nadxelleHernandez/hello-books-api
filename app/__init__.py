@@ -25,8 +25,12 @@ def create_app(test_config=None):
     migrate.init_app(app, db)
 
     from app.models.book import Book
+    from app.models.author import Author
 
     from app.routes.book_routes import books_bp
     app.register_blueprint(books_bp)
+
+    from app.routes.author_routes import author_bp
+    app.register_blueprint(author_bp)
 
     return app
